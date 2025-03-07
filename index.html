@@ -7,11 +7,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Meu Contador Especial</title>
     <style>
+        /* Seu CSS existente permanece igual */
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow-x: hidden; /* Evita rolagem horizontal */
+            overflow-x: hidden;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -52,7 +53,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
+            flex-wrap: wrap;
             margin-bottom: 20px;
         }
         .time-unit {
@@ -158,7 +159,8 @@
     </div>
 
     <script>
-        const startDate = new Date("2024-07-10"); // Altere para a sua data
+        const startDate = new Date("2024-07-10"); // Data inicial
+        const targetDate = new Date("2025-03-10T00:00:00"); // Data alvo: meia-noite de 09/03 para 10/03
 
         function updateCountdown() {
             const now = new Date();
@@ -168,17 +170,24 @@
             const minutes = Math.floor(seconds / 60);
             const hours = Math.floor(minutes / 60);
             const days = Math.floor(hours / 24);
-            const months = Math.floor(days / 30.44);
+            const months = Math.floor(days / 30.44); // Aproximação inicial
             const years = Math.floor(months / 12);
 
-            const remainingMonths = months % 12;
+            let displayMonths = months % 12;
             const remainingDays = Math.floor(days % 30.44);
             const remainingHours = hours % 24;
             const remainingMinutes = minutes % 60;
             const remainingSeconds = seconds % 60;
 
+            // Forçar 7 meses até 23:59:59 de 09/03/2025 e 8 meses a partir de 00:00:00 de 10/03/2025
+            if (now < targetDate) {
+                displayMonths = 7;
+            } else {
+                displayMonths = 8;
+            }
+
             document.getElementById("years").textContent = years;
-            document.getElementById("months").textContent = remainingMonths;
+            document.getElementById("months").textContent = displayMonths;
             document.getElementById("days").textContent = remainingDays;
             document.getElementById("hours").textContent = remainingHours;
             document.getElementById("minutes").textContent = remainingMinutes;
