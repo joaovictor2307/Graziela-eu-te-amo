@@ -38,12 +38,13 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             max-width: 800px;
             width: 90%;
+            text-align: center;
         }
         .countdown {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            margin-bottom: 20px;
         }
         .time-unit {
             background: rgba(255, 255, 255, 0.2);
@@ -61,14 +62,23 @@
             font-size: 1em;
             opacity: 0.9;
         }
+        .message {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
         .image-gallery {
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
             margin-top: 20px;
         }
         .image-gallery img {
-            width: 100px;
-            margin: 0 10px;
-            border-radius: 50%;
+            width: 120px;
+            height: 120px; /* Ajustado para um coração mais proporcional */
+            object-fit: cover;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
         }
@@ -85,8 +95,12 @@
             .time-unit span {
                 font-size: 1.5em;
             }
+            .message {
+                font-size: 1em;
+            }
             .image-gallery img {
-                width: 80px;
+                width: 90px;
+                height: 90px;
             }
         }
     </style>
@@ -98,24 +112,24 @@
     </div>
     <div class="container">
         <div class="countdown" id="countdown">
-            <p> Meus momentos são mais felizes ao seu lado</p>
             <div class="time-unit"><span id="years">0</span><label>Anos</label></div>
             <div class="time-unit"><span id="months">0</span><label>Meses</label></div>
             <div class="time-unit"><span id="days">0</span><label>Dias</label></div>
         </div>
+        <div class="message">Meus momentos são mais felizes ao seu lado</div>
         <div class="image-gallery">
-            <img src="images/1.png" alt="Eu te amo">
-            <img src="images/2.png" alt="Eu te amo mais que tudo">
-            <img src="images/3.png" alt="Mais do que eu poderia imaginar">
-            <img src="images/4.png" alt="Mais do que eu poderia imaginar">
-            <img src="images/5.png" alt="Mais do que eu poderia imaginar">
-            <img src="images/6.png" alt="Mais do que eu poderia imaginar">
-            <img src="images/7.png" alt="Mais do que eu poderia imaginar">
-            <img src="images/8.png" alt="Mais do que eu poderia imaginar">
-            <img src="images/9.png" alt="Mais do que eu poderia imaginar">
-            <img src="images/10.png" alt="Mais do que eu poderia imaginar">
-            <img src="images/11.png" alt="Mais do que eu poderia imaginar">
-            <img src="images/12.png" alt="Mais do que eu poderia imaginar">
+            <img src="images/1.png" alt="Foto 1">
+            <img src="images/2.png" alt="Foto 2">
+            <img src="images/3.png" alt="Foto 3">
+            <img src="images/4.png" alt="Foto 4">
+            <img src="images/5.png" alt="Foto 5">
+            <img src="images/6.png" alt="Foto 6">
+            <img src="images/7.png" alt="Foto 7">
+            <img src="images/8.png" alt="Foto 8">
+            <img src="images/9.png" alt="Foto 8">
+            <img src="images/10.png" alt="Foto 8">
+            <img src="images/11.png" alt="Foto 8">
+            <img src="images/12.png" alt="Foto 8">
         </div>
     </div>
 
@@ -129,14 +143,14 @@
 
             const seconds = Math.floor(diff / 1000);
             const minutes = Math.floor(seconds / 60);
-            hours = Math.floor(minutes / 60);
+            const hours = Math.floor(minutes / 60);
             const days = Math.floor(hours / 24);
             const months = Math.floor(days / 30.44);
             const years = Math.floor(months / 12);
 
             const remainingMonths = months % 12;
             const remainingDays = Math.floor(days % 30.44);
-            
+
             document.getElementById("years").textContent = years;
             document.getElementById("months").textContent = remainingMonths;
             document.getElementById("days").textContent = remainingDays;
