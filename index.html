@@ -163,38 +163,33 @@
 
         function updateCountdown() {
             const now = new Date();
+
+            // Calcular diferença total em meses e anos
             let years = now.getFullYear() - startDate.getFullYear();
-            let months = now.getMonth() - startDate.getMonth();
-            let days = now.getDate() - startDate.getDate();
+            let months = now.getMonth() - startDate.getMonth() + (years * 12);
+            let days;
 
-            // Ajuste para anos e meses negativos
-            if (days < 0) {
-                months--;
-                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                days += lastMonth.getDate();
-            }
+            // Ajustar anos e meses
             if (months < 0) {
-                years--;
-                months += 12;
-            }
-
-            // Ajuste para o dia do mês (10 como referência)
-            if (now.getDate() < 10) {
-                months--;
-                if (months < 0) {
-                    years--;
-                    months += 12;
-                }
-                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                days = lastMonth.getDate() - (10 - now.getDate());
+                years = 0;
+                months = 0;
             } else {
-                days = now.getDate() - 10;
+                years = Math.floor(months / 12);
+                months = months % 12;
             }
 
-            // Ajuste para garantir que anos não fiquem negativos antes do primeiro aniversário
-            if (years < 0) years = 0;
+            // Ajustar dias com base no dia 10
+            if (now.getDate() >= 10) {
+                // Dias desde o último dia 10
+                days = now.getDate() - 10;
+            } else {
+                // Dias desde o dia 10 do mês anterior
+                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // Último dia do mês anterior
+                days = (lastMonth.getDate() - 10) + now.getDate();
+                if (now < startDate) days = 0; // Evitar dias negativos antes da data inicial
+            }
 
-            // Cálculo das horas, minutos e segundos no dia atual
+            // Horas, minutos e segundos do dia atual
             const hours = now.getHours();
             const minutes = now.getMinutes();
             const seconds = now.getSeconds();
