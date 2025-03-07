@@ -163,13 +163,19 @@
 
         function updateCountdown() {
             const now = new Date();
+            const anniversaryDay = 10; // Dia do aniversário de namoro
 
-            // Calcular diferença total em meses e anos
+            // Calcular anos e meses completos desde startDate até agora, considerando o dia 10
             let years = now.getFullYear() - startDate.getFullYear();
             let months = now.getMonth() - startDate.getMonth() + (years * 12);
             let days;
 
-            // Ajustar anos e meses
+            // Ajustar se ainda não chegou ao dia 10 do mês atual
+            if (now.getDate() < anniversaryDay) {
+                months--;
+            }
+
+            // Corrigir anos e meses negativos
             if (months < 0) {
                 years = 0;
                 months = 0;
@@ -178,15 +184,12 @@
                 months = months % 12;
             }
 
-            // Ajustar dias com base no dia 10
-            if (now.getDate() >= 10) {
-                // Dias desde o último dia 10
-                days = now.getDate() - 10;
+            // Calcular dias
+            if (now.getDate() >= anniversaryDay) {
+                days = now.getDate() - anniversaryDay;
             } else {
-                // Dias desde o dia 10 do mês anterior
                 const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // Último dia do mês anterior
-                days = (lastMonth.getDate() - 10) + now.getDate();
-                if (now < startDate) days = 0; // Evitar dias negativos antes da data inicial
+                days = (lastMonth.getDate() - anniversaryDay) + now.getDate();
             }
 
             // Horas, minutos e segundos do dia atual
