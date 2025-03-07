@@ -76,9 +76,21 @@
         }
         .image-gallery img {
             width: 120px;
-            height: 120px; /* Ajustado para um coração mais proporcional */
+            height: 120px;
             object-fit: cover;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            /* Formato de coração com clip-path */
+            clip-path: polygon(
+                50% 0%, 
+                80% 0%, 
+                100% 20%, 
+                100% 40%, 
+                80% 60%, 
+                50% 100%, 
+                20% 60%, 
+                0% 40%, 
+                0% 20%, 
+                20% 0%
+            );
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
         }
@@ -118,18 +130,14 @@
         </div>
         <div class="message">Meus momentos são mais felizes ao seu lado</div>
         <div class="image-gallery">
-            <img src="images/1.png" alt="Foto 1">
-            <img src="images/2.png" alt="Foto 2">
-            <img src="images/3.png" alt="Foto 3">
-            <img src="images/4.png" alt="Foto 4">
-            <img src="images/5.png" alt="Foto 5">
-            <img src="images/6.png" alt="Foto 6">
-            <img src="images/7.png" alt="Foto 7">
-            <img src="images/8.png" alt="Foto 8">
-            <img src="images/9.png" alt="Foto 8">
-            <img src="images/10.png" alt="Foto 8">
-            <img src="images/11.png" alt="Foto 8">
-            <img src="images/12.png" alt="Foto 8">
+            <img src="images/foto1.jpg" alt="Foto 1">
+            <img src="images/foto2.jpg" alt="Foto 2">
+            <img src="images/foto3.jpg" alt="Foto 3">
+            <img src="images/foto4.jpg" alt="Foto 4">
+            <img src="images/foto5.jpg" alt="Foto 5">
+            <img src="images/foto6.jpg" alt="Foto 6">
+            <img src="images/foto7.jpg" alt="Foto 7">
+            <img src="images/foto8.jpg" alt="Foto 8">
         </div>
     </div>
 
