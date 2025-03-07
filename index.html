@@ -127,6 +127,9 @@
             <div class="time-unit"><span id="years">0</span><label>Anos</label></div>
             <div class="time-unit"><span id="months">0</span><label>Meses</label></div>
             <div class="time-unit"><span id="days">0</span><label>Dias</label></div>
+            <div class="time-unit"><span id="hours">0</span><label>Horas</label></div>
+            <div class="time-unit"><span id="minutes">0</span><label>Minutos</label></div>
+            <div class="time-unit"><span id="seconds">0</span><label>Segundos</label></div>
         </div>
         <div class="message">Meus momentos são mais felizes ao seu lado</div>
         <div class="image-gallery">
@@ -162,7 +165,10 @@
 
             const remainingMonths = months % 12;
             const remainingDays = Math.floor(days % 30.44);
-
+            const remainingHours = hours % 24;
+            const remainingMinutes = minutes % 60;
+            const remainingSeconds = seconds % 60;
+            
             document.getElementById("years").textContent = years;
             document.getElementById("months").textContent = remainingMonths;
             document.getElementById("days").textContent = remainingDays;
