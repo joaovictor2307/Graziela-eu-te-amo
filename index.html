@@ -2,19 +2,26 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Meu Contador Especial</title>
     <style>
-        body {
+        html, body {
             margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden; /* Evita rolagem horizontal */
+        }
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #00FFFF, #d50eeb);
             color: white;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            box-sizing: border-box;
         }
         .header {
             text-align: center;
@@ -33,33 +40,36 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.18);
-            max-width: 800px;
-            width: 90%;
+            max-width: 90%;
+            width: 100%;
             text-align: center;
+            box-sizing: border-box;
         }
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
+            flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
             margin-bottom: 20px;
         }
         .time-unit {
             background: rgba(255, 255, 255, 0.2);
-            padding: 15px;
+            padding: 10px;
             border-radius: 10px;
             text-align: center;
-            min-width: 100px;
+            min-width: 60px;
+            flex: 1;
         }
         .time-unit span {
             display: block;
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: bold;
         }
         .time-unit label {
-            font-size: 1em;
+            font-size: 0.9em;
             opacity: 0.9;
         }
         .message {
@@ -71,14 +81,13 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 10px;
             margin-top: 20px;
         }
         .image-gallery img {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             object-fit: cover;
-            /* Formato de coração com clip-path */
             clip-path: polygon(
                 49% 15%, 
                 67% 0%, 
@@ -102,7 +111,7 @@
                 font-size: 1.8em;
             }
             .time-unit {
-                min-width: 80px;
+                min-width: 50px;
             }
             .time-unit span {
                 font-size: 1.5em;
@@ -111,8 +120,8 @@
                 font-size: 1em;
             }
             .image-gallery img {
-                width: 90px;
-                height: 90px;
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
@@ -141,15 +150,14 @@
             <img src="images/6.png" alt="Foto 6">
             <img src="images/7.png" alt="Foto 7">
             <img src="images/8.png" alt="Foto 8">
-            <img src="images/9.png" alt="Foto 8">
-            <img src="images/10.png" alt="Foto 8">
-            <img src="images/11.png" alt="Foto 8">
-            <img src="images/12.png" alt="Foto 8">
+            <img src="images/9.png" alt="Foto 9">
+            <img src="images/10.png" alt="Foto 10">
+            <img src="images/11.png" alt="Foto 11">
+            <img src="images/12.png" alt="Foto 12">
         </div>
     </div>
 
     <script>
-        // Defina a data inicial aqui (formato: "YYYY-MM-DD")
         const startDate = new Date("2024-07-10"); // Altere para a sua data
 
         function updateCountdown() {
@@ -168,7 +176,7 @@
             const remainingHours = hours % 24;
             const remainingMinutes = minutes % 60;
             const remainingSeconds = seconds % 60;
-            
+
             document.getElementById("years").textContent = years;
             document.getElementById("months").textContent = remainingMonths;
             document.getElementById("days").textContent = remainingDays;
@@ -177,8 +185,9 @@
             document.getElementById("seconds").textContent = remainingSeconds;
         }
 
-        setInterval(updateCountdown, 1000);
+        // Atualiza imediatamente e depois a cada segundo
         updateCountdown();
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
