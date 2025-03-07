@@ -159,39 +159,52 @@
     </div>
 
     <script>
-        const startDate = new Date("2024-07-10"); // Data inicial
-        const targetDate = new Date("2025-03-10T00:00:00"); // Data alvo: meia-noite de 09/03 para 10/03
+        const startDate = new Date("2024-07-10T00:00:00"); // Data inicial do namoro
 
         function updateCountdown() {
             const now = new Date();
-            const diff = now - startDate;
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
 
-            const seconds = Math.floor(diff / 1000);
-            const minutes = Math.floor(seconds / 60);
-            const hours = Math.floor(minutes / 60);
-            const days = Math.floor(hours / 24);
-            const months = Math.floor(days / 30.44); // Aproximação inicial
-            const years = Math.floor(months / 12);
-
-            let displayMonths = months % 12;
-            const remainingDays = Math.floor(days % 30.44);
-            const remainingHours = hours % 24;
-            const remainingMinutes = minutes % 60;
-            const remainingSeconds = seconds % 60;
-
-            // Forçar 7 meses até 23:59:59 de 09/03/2025 e 8 meses a partir de 00:00:00 de 10/03/2025
-            if (now < targetDate) {
-                displayMonths = 7;
-            } else {
-                displayMonths = 8;
+            // Ajuste para anos e meses negativos
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
             }
 
+            // Ajuste para o dia do mês (10 como referência)
+            if (now.getDate() < 10) {
+                months--;
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days = lastMonth.getDate() - (10 - now.getDate());
+            } else {
+                days = now.getDate() - 10;
+            }
+
+            // Ajuste para garantir que anos não fiquem negativos antes do primeiro aniversário
+            if (years < 0) years = 0;
+
+            // Cálculo das horas, minutos e segundos no dia atual
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
             document.getElementById("years").textContent = years;
-            document.getElementById("months").textContent = displayMonths;
-            document.getElementById("days").textContent = remainingDays;
-            document.getElementById("hours").textContent = remainingHours;
-            document.getElementById("minutes").textContent = remainingMinutes;
-            document.getElementById("seconds").textContent = remainingSeconds;
+            document.getElementById("months").textContent = months;
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
         }
 
         // Atualiza imediatamente e depois a cada segundo
