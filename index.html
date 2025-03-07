@@ -61,6 +61,20 @@
             font-size: 1em;
             opacity: 0.9;
         }
+        .image-gallery {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .image-gallery img {
+            width: 100px;
+            margin: 0 10px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.1);
+        }
         @media (max-width: 600px) {
             .header h1 {
                 font-size: 1.8em;
@@ -71,6 +85,9 @@
             .time-unit span {
                 font-size: 1.5em;
             }
+            .image-gallery img {
+                width: 80px;
+            }
         }
     </style>
 </head>
@@ -78,7 +95,7 @@
     <div class="header">
         <h1>Eu te amo muito Graziela</h1>
         <p>Tempo que passou desde a minha melhor escolha</p>
-</div>
+    </div>
     <div class="container">
         <div class="countdown" id="countdown">
             <div class="time-unit"><span id="years">0</span><label>Anos</label></div>
@@ -87,6 +104,11 @@
             <div class="time-unit"><span id="hours">0</span><label>Horas</label></div>
             <div class="time-unit"><span id="minutes">0</span><label>Minutos</label></div>
             <div class="time-unit"><span id="seconds">0</span><label>Segundos</label></div>
+        </div>
+        <div class="image-gallery">
+            <img src="images/1.png" alt="Eu te amo">
+            <img src="images/2.png" alt="Eu te amo mais que tudo">
+            <img src="images/3.png" alt="Mais do que eu poderia imaginar">
         </div>
     </div>
 
@@ -100,7 +122,7 @@
 
             const seconds = Math.floor(diff / 1000);
             const minutes = Math.floor(seconds / 60);
-            const hours = Math.floor(minutes / 60);
+            hours = Math.floor(minutes / 60);
             const days = Math.floor(hours / 24);
             const months = Math.floor(days / 30.44);
             const years = Math.floor(months / 12);
@@ -121,11 +143,6 @@
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
-    </head>
-    <body>
-        <div class="header">
-            <img src="images/1.png" alt="Eu te amo">
-</div>
-</script>
+    </script>
 </body>
 </html>
